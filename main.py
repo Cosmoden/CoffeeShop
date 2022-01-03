@@ -9,13 +9,11 @@ import sqlite3
 class Example(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.setupUi(self)
         self.setGeometry(300, 300, 800, 600)
-        self.setWindowTitle('Рисование')
+        self.setWindowTitle('Кофе')
         uic.loadUi("main.ui", self)
         self.c = sqlite3.connect("coffee.sqlite3")
         self.display()
-        self.pushButton.clicked.connect(self.add_film)
 
     def display(self):
         cur = self.c.cursor()
