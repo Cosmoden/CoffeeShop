@@ -2,14 +2,16 @@ import sys
 from PyQt5.QtWidgets import *
 from PyQt5 import uic
 import sqlite3
+from UI.main_ui import Ui_MainWindow
+from UI.addEditCoffeeForm import Ui_Form
 
 
-class MyWindow(QMainWindow):
+class MyWindow(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
         self.setGeometry(300, 300, 1200, 1000)
         self.setWindowTitle('Кофе')
-        uic.loadUi("main.ui", self)
+        self.setupUi(self)
         self.c = sqlite3.connect("coffee.sqlite3")
         self.pushButton.clicked.connect(self.add_type)
         self.pushButton_2.clicked.connect(self.edit_type)
@@ -37,12 +39,12 @@ class MyWindow(QMainWindow):
         self.widget.show()
 
 
-class AddEditWidget(QWidget):
+class AddEditWidget(QWidget, Ui_Form):
     def __init__(self):
         super().__init__()
         self.setGeometry(400, 400, 800, 600)
         self.setWindowTitle('Редактировать данные')
-        uic.loadUi("addEditCoffeeForm.ui", self)
+        self.setupUi(self)
         self.c = sqlite3.connect("coffee.sqlite3")
         self.spinBox.setRange(0, 1)
         self.spinBox_2.setRange(1, 5000)
